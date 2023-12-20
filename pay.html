@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="style/app.css">
+    <link rel="stylesheet" href="lib/tailwind.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;1,200;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <script>
+        function checkout() {
+            CinetPay.setConfig({
+                apikey: '37422111656501c8066232.86839764',//   YOUR APIKEY
+                site_id: '5866138',//YOUR_SITE_ID
+                notify_url: 'http://ontoplemag.com/',
+                mode: 'PRODUCTION'
+            });
+            CinetPay.getCheckout({
+                transaction_id: Math.floor(Math.random() * 100000000).toString(), 
+                // YOUR TRANSACTION ID
+                amount: 100,
+                currency: 'XAF',
+                channels: 'ALL',
+                description: 'Paiement du 9e numero de OnTop!Magazine.',   
+                 //Fournir ces variables pour le paiements par carte bancaire
+                customer_name:"OnTop!",//Le nom du client
+                customer_surname:"Mag",//Le prenom du client
+                customer_email: "ontoplemag@gmail.com",//l'email du client
+                customer_phone_number: "+237678717767",//l'email du client
+                customer_address : "BP 0024",//addresse du client
+                customer_city: "Yaoundé",// La ville du client
+                customer_country : "CM",// le code ISO du pays
+                customer_state : "CM",// le code ISO l'état
+                customer_zip_code : "06510", // code postal
+
+            });
+            CinetPay.waitResponse(function(data) {
+                if (data.status == "REFUSED") {
+                    if (alert("Votre paiement a échoué")) {
+                        window.location.reload();
+                    }
+                } else if (data.status == "ACCEPTED") {
+                    if (alert("Votre paiement a été effectué avec succès")) {
+                        window.location.href = "https://1drv.ms/b/s!AhObc7xAoR44a69siKKndl8-xZM?e=RgT95v";
+                    }
+                }
+            });
+            CinetPay.onError(function(data) {
+                console.log(data);
+            });
+        }
+    </script>
+    <title>Paiement</title>
+</head>
+<style>
+    .sdk {
+        display: block;
+        position: absolute;
+        background-position: center;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+<body>
+    </head>
+    <body>
+        <div class="sdk">
+            <h1 class="font-bold text-2xl sm:text-5xl text-black">
+                <b>Accédez aux moyens de paiement</b>
+            </h1>
+            <br>
+            <button class="border border-black p-3 hover:text-white hover:bg-black" onclick="checkout()">Payer directement</button>
+        </div>
+    </body>
+</html>  

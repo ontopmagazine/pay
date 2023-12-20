@@ -1,0 +1,36 @@
+:root
+{
+    --color: #;
+    --bg: #000;
+    --radius: 1px;
+    --white: #fff;
+}
+
+*
+{
+    font-family: Montserrat;
+    color: #000;
+}
+*::selection
+{
+    background-color: var(--bg);
+    color: var(--white);
+}
+
+.button
+{
+    background-color: var(--first-color);
+    border: none;
+    border-radius: var(--radius);
+    color: var(--black);
+    cursor: pointer;
+    font-family: var(--font);
+    font-size: var(--text);
+    text-align: center;
+    transition: var(--transition);
+}
+.button:hover
+{
+    color: var(--white);
+    background-color: var(--hover);
+}
